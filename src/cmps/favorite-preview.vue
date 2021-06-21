@@ -1,10 +1,5 @@
 <template>
-  <!-- <li>
-         <p>{{favoriteCity.weathers.DailyForecasts[0]}}</p>
-         <button @click="removeFavoriteCity()">remove</button>
-         
-     </li> -->
-  <div class="weather" @click="redirect()">
+  <div class="weather">
     <div class="row">
       <div class="col-md-6">
         <div class="card">
@@ -13,9 +8,8 @@
               class="img-fluid"
               :src="`https://developer.accuweather.com/sites/default/files/${weatherIcon}-s.png`"
           /></span>
-          <div class="title">
-            <p>{{ favoriteCity.city.LocalizedName }}</p>
-          </div>
+
+          <button class="deleteBtn" @click="removeFavoriteCity()">X</button>
           <div class="temp">+{{ fahrenToCles }}<sup>&deg;</sup></div>
           <div class="row">
             <div class="col-4">
@@ -25,8 +19,8 @@
               </div>
             </div>
             <div class="col-4">
-              <div class="header">Air pollution</div>
-              <div class="value">47</div>
+              <div class="header">City</div>
+              <div class="value">{{ favoriteCity.city.LocalizedName }}</div>
             </div>
             <div class="col-4">
               <div class="header">Night</div>
@@ -74,11 +68,8 @@ export default {
     },
   },
   methods: {
-    redirect() {
-      this.$router.push("/");
-    },
     removeFavoriteCity() {
-      console.log("executing removeFav");
+      this.$vToastify.success("successfuly deleted");
       this.$store.dispatch({
         type: "removeFromFavorites",
         _id: this.favoriteCity._id,
@@ -89,7 +80,12 @@ export default {
 </script>
 
 <style scoped>
-
+.deleteBtn {
+  width: 60px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
 
 .container {
   background-color: #ffffff;
@@ -113,9 +109,14 @@ export default {
   .weather {
     width: 100%;
   }
+  .card {
+    width: none;
+  }
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
   width: 365px;
   margin: 15px;
@@ -166,6 +167,8 @@ export default {
 }
 .row {
   width: 385px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .icon img {

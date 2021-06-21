@@ -29,10 +29,7 @@ export const weatherStore = {
       state.favortiesCities = state.favortiesCities.filter(currFavCity => _id !== currFavCity._id)
     },
     saveToFavories(state, { favCityToAdd }) {
-      // console.log(payload.favCityToAdd);
-      console.log('favCity got in mutation: ', favCityToAdd)
       state.favortiesCities.push(favCityToAdd)
-      // console.log(state.favortiesCities);
     },
 
   },
@@ -58,8 +55,7 @@ export const weatherStore = {
       }
       context.commit({ type: 'saveToFavories', favCityToAdd })
       const updatedFavoriteCities = context.getters.getFavoriteCities
-      console.log('faoritesCities after update in state: ')
-      console.log(updatedFavoriteCities)
+
       storageService.store('Favorite-city', updatedFavoriteCities)
     },
     changeDisplayToCelsius(context) {
@@ -67,7 +63,6 @@ export const weatherStore = {
     },
     changeToDarkMode(context) {
       context.state.isDark = !context.state.isDark
-      console.log(context.state.isDark);
     }
 
 

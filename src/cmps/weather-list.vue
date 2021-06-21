@@ -9,9 +9,9 @@
                 class="img-fluid"
                 :src="`https://developer.accuweather.com/sites/default/files/${weatherIcon}-s.png`"
             /></span>
-            <div class="title">
+            <!-- <div class="title">
               <p>{{ city.LocalizedName }}</p>
-            </div>
+            </div> -->
             <div class="temp">+{{ fahrenToCles }}<sup>&deg;</sup></div>
             <div class="row">
               <div class="col-4">
@@ -74,13 +74,13 @@ export default {
 </script>
 <style scoped>
 body {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(238, 237, 237, 0.33);
-  color: rgb(105, 104, 104);
-  font-family: sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(238, 237, 237, 0.33);
+    color: rgb(105, 104, 104);
+    font-family: sans-serif
 }
 
 .container {
@@ -108,6 +108,8 @@ body {
 }
 
 .card {
+   display: flex;
+  flex-direction: column;
   padding: 1rem;
   width: 365px;
   margin: 15px;
@@ -122,6 +124,7 @@ body {
   .card {
     margin: 1.5rem;
   }
+  
 }
 
 .title {
@@ -151,13 +154,15 @@ body {
 }
 
 .icon {
-  align-self: flex-end;
-  margin-right: -2.5rem;
-  margin-top: -2rem;
-  z-index: 999;
+    align-self: flex-end;
+    margin-right: -2.5rem;
+    margin-top: -2rem;
+    z-index: 999
 }
 .row {
   width: 385px;
+  display: flex;
+    justify-content: space-around;
 }
 
 .icon img {

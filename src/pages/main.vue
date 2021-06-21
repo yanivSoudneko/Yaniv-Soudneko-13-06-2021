@@ -1,9 +1,11 @@
 <template>
   <div class="home">
     <search-cmp />
-    <button @click="saveToFavorites()">Save</button>
-    <button @click="changeToCelsius()">Change to Celsius</button>
-    <button @click="changeToDarkMode()">Mode</button>
+    <div class="main-btn">
+      <button @click="saveToFavorites()">Save</button>
+      <button @click="changeToCelsius()">Change to Celsius</button>
+      <button @click="changeToDarkMode()">Mode</button>
+    </div>
     <div v-if="city" @myEvent="city()">
       <span
         >{{ city.LocalizedName }},{{ city.Region.LocalizedName }},{{
@@ -13,7 +15,7 @@
     </div>
     <ul class="main-container" v-if="weathers.DailyForecasts">
       <li v-for="forecast in weathers.DailyForecasts" :key="forecast.Date">
-        <weather-preview :forecast="forecast" :city="city" />
+        <weather-list :forecast="forecast" :city="city" />
       </li>
     </ul>
   </div>
@@ -21,7 +23,7 @@
 
 <script>
 import SearchCmp from "../cmps/search.cmp.vue";
-import weatherPreview from "../cmps/weather-preview.vue";
+import weatherList from "../cmps/weather-list.vue";
 export default {
   name: "Home",
 
@@ -51,6 +53,7 @@ export default {
     saveToFavorites() {
       const weather = { ...this.$store.getters.getWeather };
       const city = { ...this.$store.getters.getlocation };
+      this.$vToastify.success("successfuly saved");
       const favoriteCity = {
         weathers: weather,
         city: city,
@@ -64,11 +67,12 @@ export default {
   },
   components: {
     SearchCmp,
-    weatherPreview,
+    weatherList,
   },
 };
 </script>
 <style >
+
 body {
   min-height: 100vh;
   align-items: center;
@@ -76,6 +80,9 @@ body {
   background-color: rgba(238, 237, 237, 0.33);
   color: rgb(105, 104, 104);
   font-family: sans-serif;
+}
+.main-btn button{
+  margin: 10px;
 }
 .darkMode {
   background-color: grey;
@@ -85,6 +92,7 @@ body {
   max-width: 860px;
   margin: 0 auto;
 }
+
 .main-container {
   list-style: none;
   margin: 0;
@@ -92,5 +100,11 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(365px, 1fr));
   grid-gap: 10px 10px;
+}
+@media (max-width: 768px) {
+  .main-container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
 }
 </style>

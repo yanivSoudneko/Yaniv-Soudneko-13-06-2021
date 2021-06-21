@@ -23,7 +23,6 @@ export default {
       filterBy: "",
     };
   },
-  components: {},
   methods: {
     async doSearch() {
       try {

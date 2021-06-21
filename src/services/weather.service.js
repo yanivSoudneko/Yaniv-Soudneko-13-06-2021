@@ -1,13 +1,11 @@
 
 const key = 'tUOZ2fSWtVFdCCh9zWMZkJ1UiFPNVaci'
-// import { storageService } from './storage.service.js'
 
 export const weatherService = {
     getCity,
     getWeather,
     makeId,
 }
-// get weather information
 
 async function getWeather(id) {
     const base = `https://dataservice.accuweather.com/forecasts/v1/daily/5day/`
@@ -18,7 +16,6 @@ async function getWeather(id) {
 }
 
 
-// get city information 
 
 async function getCity(city = "TelAviv") {
     try {
@@ -43,7 +40,6 @@ async function getCity(city = "TelAviv") {
 
 
 
-// util function 
 
 function makeId(length = 5) {
     var txt = '';
