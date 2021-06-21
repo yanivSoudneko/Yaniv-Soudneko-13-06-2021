@@ -10,7 +10,7 @@ export const weatherService = {
 // get weather information
 
 async function getWeather(id) {
-    const base = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/`
+    const base = `https://dataservice.accuweather.com/forecasts/v1/daily/5day/`
     const query = `${id}?apikey=${key}`
     const res = await fetch(base + query)
     const data = await res.json()
@@ -22,7 +22,7 @@ async function getWeather(id) {
 
 async function getCity(city = "TelAviv") {
     try {
-        const base = 'http://dataservice.accuweather.com/locations/v1/cities/search'
+        const base = 'https://dataservice.accuweather.com/locations/v1/cities/search'
         const query = `?apikey=${key}&q=${city}`
         const data = await fetch(base + query)
         const res = await data.json()
